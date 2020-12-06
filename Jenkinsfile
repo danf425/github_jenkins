@@ -10,7 +10,7 @@ pipeline {
         stage ('SSH into cluster') {
             steps{
                 sshagent(credentials : ['danf-ubuntu-k8s']) {
-                    sh 'ssh ubuntu@3.239.17.31 sudo docker ps'
+                    sh 'ssh ubuntu@3.239.17.31 pwd'
                 }
 
             }
