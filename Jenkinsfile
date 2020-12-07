@@ -10,7 +10,7 @@ pipeline {
         stage ('Deploy new YAML into production') {
             steps{
                 sshagent(credentials : ['danf-ubuntu-k8s']) {
-                    sh """ ssh -o StrictHostKeyChecking=no  ubuntu@3.239.17.31 << EOF
+                    sh """ ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
                     uptime
                     [ ! -d "/home/ubuntu/github_jenkins" ] && echo "GitHub repo doesn't exists. Cloning..." && git clone https://github.com/danf425/github_jenkins.git
                     cd github_jenkins
