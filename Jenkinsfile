@@ -15,7 +15,7 @@ pipeline {
                     [ ! -d "/home/ubuntu/github_jenkins" ] && echo "GitHub repo doesn't exists. Cloning..." && git clone https://github.com/danf425/github_jenkins.git
                     cd github_jenkins
                     git pull 
-                    # [ ! $(docker images -q danf/logdna-kubecon-demo) ] && echo "Docker image does not exist. Building..." && docker build . -t danf/logdna-kubecon-demo
+                    # [ ! \$(docker images -q danf/logdna-kubecon-demo) ] && echo "Docker image does not exist. Building..." && docker build . -t danf/logdna-kubecon-demo
                     kubectl apply -f app.yaml
                     ls
                     """
