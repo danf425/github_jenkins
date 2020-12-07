@@ -10,12 +10,11 @@ pipeline {
         stage ('SSH into cluster') {
             steps{
                 sshagent(credentials : ['danf-ubuntu-k8s']) {
-                    sh """ ssh -o StrictHostKeyChecking=no  ubuntu@3.239.17.31 <<EOF
+                    sh """ ssh -o StrictHostKeyChecking=no  ubuntu@3.239.17.31 << EOF
                     uptime
                     pwd
                     touch hi
-                    EOF
-                    """
+                    EOF"""
                 }
 
             }
