@@ -7,7 +7,7 @@ pipeline {
                 echo "hello world"
             }
         }
-        stage ('SSH into cluster') {
+        stage ('Deploy new YAML into production') {
             steps{
                 sshagent(credentials : ['danf-ubuntu-k8s']) {
                     sh """ ssh -o StrictHostKeyChecking=no  ubuntu@3.239.17.31 << EOF
