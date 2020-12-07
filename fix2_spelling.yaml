@@ -49,3 +49,21 @@ spec:
     targetPort: 8080
   selector:
     app: tree
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app: tree
+  name: tree-lb-service
+spec:
+  ports:
+  - port: 8080
+    protocol: TCP
+    targetPort: 8080
+  selector:
+    app: tree
+  type: LoadBalancer
+status:
+  loadBalancer: {}
+
