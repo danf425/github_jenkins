@@ -10,7 +10,7 @@ pipeline {
         stage ('SSH into cluster') {
             steps{
                 sshagent(credentials : ['danf-ubuntu-k8s']) {
-                    sh """ ssh -o StrictHostKeyChecking=no  ubuntu@3.239.17.31 git clone
+                    sh """ ssh -o StrictHostKeyChecking=no  ubuntu@3.239.17.31 uptime
                            pwd
                            touch hi
                     """
