@@ -24,7 +24,7 @@ spec:
       containers:
       - name: tree
         image: danf/logdna-kubecon-demo:latest
-        imagePullPolicy: Never
+        imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
         envFrom:
