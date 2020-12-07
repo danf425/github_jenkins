@@ -23,7 +23,7 @@ spec:
     spec:
       containers:
       - name: tree
-        image: danf/logdna-kubecon-demo:latest
+        image: dmontanez/logdna-kubecon-demo:latest
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
