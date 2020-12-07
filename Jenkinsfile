@@ -14,7 +14,8 @@ pipeline {
                     uptime
                     pwd
                     touch hi
-                    EOF"""
+                    ls
+                    """
                 }
 
             }
