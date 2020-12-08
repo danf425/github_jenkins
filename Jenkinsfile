@@ -54,6 +54,8 @@ pipeline {
                     cat svc_url.txt
                     brf="this is a test"
                     echo \$brf
+                    export BAR=2
+                    echo \$BAR
                     sleep 11
                     #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
                     echo "does below work"
