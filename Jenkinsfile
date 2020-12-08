@@ -1,3 +1,5 @@
+#!/usr/bin/env groovy
+
 pipeline {
     agent any
 
@@ -20,7 +22,7 @@ pipeline {
                     kubectl apply -f app.yaml
                     echo "hihihihihi"
                     test="hi1"
-                    echo $test
+                    echo ${test}
                     sleep 3
                     ls
                     svc_url="$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
