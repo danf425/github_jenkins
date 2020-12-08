@@ -51,6 +51,8 @@ pipeline {
                     uptime
                     cat svc_url.txt
                     brf="this is a test"
+                    $(sudo docker images)
+                    sudo docker images
                     echo \$brf
                     testx="hi"
                     echo \$testx
