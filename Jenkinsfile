@@ -25,12 +25,13 @@ pipeline {
                     # [ ! \$(docker images -q dmontanez/logdna-kubecon-demo) ] && echo "Docker image does not exist. Building..." && docker build . -t dmontanez/logdna-kubecon-demo
                     kubectl apply -f app.yaml
                     echo "here are my problems"
-                    sleep 1
                     cd ..
                     echo "curl" > svc_url.txt
                     kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' >> svc_url.txt
                     echo ":8080" >> svc_url.txt
                     cat svc_url.txt
+                    sleep 2
+                    echo "trasferring to new txt"
                     cat svc_url.txt | sed ':a;N;s/\n/ /;ba' > svc_url1.txt
                     cat svc_url1.txt
                     echo "#!/bin/bash\n\n" > svc_url.sh
