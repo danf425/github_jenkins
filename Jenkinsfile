@@ -31,8 +31,6 @@ pipeline {
                     kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' > svc_url.txt
                     echo ":8080" >> svc_url.txt
                     cat svc_url.txt
-                    sleep 10
-                    #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
                     echo "url stored in file"
                     # echo "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # curl "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
@@ -55,7 +53,9 @@ pipeline {
                     cat svc_url.txt
                     sleep 11
                     #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
-                    echo \$(cat svc_url.txt)
+                    echo "does below work"
+                    echo "\$(cat svc_url.txt)"
+                    echo "yes or no?"
                     """
                 }
 
