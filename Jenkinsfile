@@ -2,9 +2,9 @@
 
 pipeline {
     agent any
-    environment {
-        temp = "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
-    }
+    // environment {
+    //     temp = "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
+    // }
 
     stages {
         stage ('hello world') {
@@ -26,13 +26,11 @@ pipeline {
                     echo "here are my problems"
                     echo \$testx
                     echo "\$testx"
-                    echo $temp
-                    
+                    # echo $temp
                     sleep 3
                     kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' > svc_url.txt
                     echo ":8080" >> svc_url.txt
-                    export testfile=\$(cat svc_url.txt) 
-                    echo \$testfile
+                    cat svc_url.txt
                     # echo "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # curl "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # svc_url="\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
