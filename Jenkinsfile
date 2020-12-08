@@ -46,7 +46,7 @@ pipeline {
         stage ('test new deployment') {
             steps{
                 sshagent(credentials : ['danf-ubuntu-k8s']) {
-                    sh """#!/bin/bash
+                    sh """
                     ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
                     uptime
                     cat svc_url.txt
