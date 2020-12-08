@@ -51,6 +51,8 @@ pipeline {
                     ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
                     uptime
                     cat svc_url.txt
+                    brf="this is a test"
+                    echo \$brf
                     sleep 11
                     #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
                     echo "does below work"
