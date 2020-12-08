@@ -32,7 +32,8 @@ pipeline {
                     cat svc_url.txt
                     sleep 2
                     echo "trasferring to new txt"
-                    sed ':a;N;s/\n/ /;ba' svc_url.txt > svc_url1.txt
+                    #sed ':a;N;s/\n/ /;ba' svc_url.txt > svc_url1.txt
+                    sed -e ':a' -e 'N' -e '$!ba' -e 's/\n/ /g' svc_url.txt > svc_url1.txt
                     cat svc_url1.txt
                     echo "#!/bin/bash\n\n" > svc_url.sh
                     cat svc_ur1.txt >> svc_url.sh
