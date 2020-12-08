@@ -10,16 +10,16 @@ kind: Deployment
 metadata:
   name: treed-deployment
   labels:
-    app: tree
+    app: tree_troubleshooting_k8s_demo
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: tree
+      app: tree_troubleshooting_k8s_demo
   template:
     metadata:
       labels:
-        app: tree
+        app: tree_troubleshooting_k8s_demo
     spec:
       containers:
       - name: tree
@@ -38,14 +38,14 @@ kind: Service
 metadata:
   name: tree-service
   labels:
-    app: tree
+    app: tree_troubleshooting_k8s_demo
 spec:
   ports:
   - name: tree
     port: 80
     targetPort: 8080
   selector:
-    app: tree
+    app: tree_troubleshooting_k8s_demo
 ---
 apiVersion: v1
 kind: Service
@@ -59,7 +59,7 @@ spec:
     protocol: TCP
     targetPort: 8080
   selector:
-    app: tree
+    app: tree_troubleshooting_k8s_demo
   type: LoadBalancer
 status:
   loadBalancer: {}
