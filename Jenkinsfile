@@ -18,7 +18,7 @@ pipeline {
                     # [ ! \$(docker images -q dmontanez/logdna-kubecon-demo) ] && echo "Docker image does not exist. Building..." && docker build . -t dmontanez/logdna-kubecon-demo
                     kubectl apply -f app.yaml
                     sleep 3
-                    test="hi"
+                    set test = "hi1"
                     echo \$test
                     svc_url="\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
                     svc_url+=":8080"
