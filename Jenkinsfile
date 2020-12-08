@@ -30,7 +30,9 @@ pipeline {
                     cat temp.txt
                     tr '\n' ' ' < temp.txt > temp2.txt
                     cat temp2.txt
-                    # echo "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
+                    echo "#!/bin/bash\n\n" > svc_url.sh
+                    cat temp2.txt >> svc_url.sh
+                    cat svc_url.sh
                     # curl "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # svc_url="\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
                     # svc_url+=":8080"
