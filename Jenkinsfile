@@ -21,7 +21,7 @@ pipeline {
                     svc_url+=":8080"
                     echo \$svc_url
                     sleep 5
-                    curl \$svc_url                    
+                    # curl \$svc_url                    
                     """
                 }
 
