@@ -19,8 +19,9 @@ pipeline {
                     kubectl apply -f app.yaml
                     svc_url="\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
                     svc_url+=":8080"
+                    echo \$svc_url
                     sleep 5
-                    curl $svc_url                    
+                    curl \$svc_url                    
                     """
                 }
 
