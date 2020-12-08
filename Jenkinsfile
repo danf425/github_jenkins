@@ -3,9 +3,9 @@
 pipeline {
     agent any
 
-    environment {
-        test = sh(script: "kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'", returnStdout: true).trim()
-    }
+    // environment {
+    //     test = sh(script: "kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'", returnStdout: true).trim()
+    // }
 
 
     stages {
@@ -54,9 +54,6 @@ pipeline {
                     cat svc_url.txt
                     brf="this is a test"
                     echo \$brf
-                    echo $test
-                    echo "${env.test}"
-                    echo "$test:8080"
                     sleep 11
                     #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
                     echo "does below work"
