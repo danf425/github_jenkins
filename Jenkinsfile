@@ -15,7 +15,7 @@ pipeline {
                     [ ! -d "/home/ubuntu/tree_troubleshooting_k8s_demo" ] && echo "GitHub repo doesn't exists. Cloning..." && git clone https://github.com/danf425/tree_troubleshooting_k8s_demo.git
                     cd tree_troubleshooting_k8s_demo
                     git pull 
-                    # [ ! \$(docker images -q danf/logdna-kubecon-demo) ] && echo "Docker image does not exist. Building..." && docker build . -t danf/logdna-kubecon-demo
+                    # [ ! \$(docker images -q dmontanez/logdna-kubecon-demo) ] && echo "Docker image does not exist. Building..." && docker build . -t dmontanez/logdna-kubecon-demo
                     kubectl apply -f app.yaml
                     ls
                     """
