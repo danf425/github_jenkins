@@ -28,7 +28,7 @@ pipeline {
                     kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' >> temp.txt
                     echo ":8080" >> temp.txt
                     cat temp.txt
-                    tr -d '\n' < temp.txt > temp2.txt
+                    tr '\n' ' ' < temp.txt > temp2.txt
                     cat temp2.txt
                     # echo "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # curl "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
