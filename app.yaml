@@ -27,12 +27,9 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 8080
-        envFrom:
-        - configMapRef:
-            name: tree-env-config-map
         resources:
           limits:
-            cpu: "1"
+            cpu: "1m"
             memory: "128M"
       terminationGracePeriodSeconds: 5
 ---
