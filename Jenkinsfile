@@ -27,8 +27,10 @@ pipeline {
                     echo "here are my problems"
                     sleep 1
                     cd ..
-                    kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' > svc_url.txt
-                    echo ":8080" >> svc_url.txt
+                    echo "#!/bin/bash" > svc_url.sh
+                    echo '\n' > svc_url.sh
+                    kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' >> svc_url.sh
+                    echo ":8080" >> svc_url.sh
                     cat svc_url.txt
                     echo "url stored in file"
                     # echo "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
