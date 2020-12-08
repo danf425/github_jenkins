@@ -25,8 +25,6 @@ pipeline {
                     # [ ! \$(docker images -q dmontanez/logdna-kubecon-demo) ] && echo "Docker image does not exist. Building..." && docker build . -t dmontanez/logdna-kubecon-demo
                     kubectl apply -f app.yaml
                     echo "here are my problems"
-                    echo \$testx
-                    echo "\$testx"
                     sleep 1
                     cd ..
                     kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' > svc_url.txt
@@ -48,12 +46,15 @@ pipeline {
         stage ('test new deployment') {
             steps{
                 sshagent(credentials : ['danf-ubuntu-k8s']) {
-                    sh """#!/bin/bash
+                    sh """#!/usr/bin/env bash
                     ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
                     uptime
                     cat svc_url.txt
                     brf="this is a test"
                     echo \$brf
+                    testx="hi"
+                    echo \$testx
+                    echo "\$testx"
                     export BAR=2
                     echo \$BAR
                     sleep 11
