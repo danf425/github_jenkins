@@ -10,7 +10,7 @@ pipeline {
         stage ('Deploy new YAML into production') {
             steps{
                 sshagent(credentials : ['danf-ubuntu-k8s']) {
-                    sh """ ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
+                    sh ''' ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
                     uptime
                     [ ! -d "/home/ubuntu/tree_troubleshooting_k8s_demo" ] && echo "GitHub repo doesn't exists. Cloning..." && git clone https://github.com/danf425/tree_troubleshooting_k8s_demo.git
                     cd tree_troubleshooting_k8s_demo
@@ -27,7 +27,7 @@ pipeline {
                     echo \$svc_url
                     sleep 5
                     # curl \$svc_url                    
-                    """
+                    '''
                 }
 
             }
