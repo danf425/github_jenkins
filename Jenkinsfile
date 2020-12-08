@@ -2,9 +2,11 @@
 
 pipeline {
     agent any
-    //  environment {
-    //      TEST2 = sh(script: "(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080")
-    //  }
+
+    environment {
+        test = sh(script: "kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'", returnStdout: true).trim()
+    }
+
 
     stages {
         stage ('hello world') {
@@ -17,7 +19,6 @@ pipeline {
                 sshagent(credentials : ['danf-ubuntu-k8s']) {
                     sh """#!/bin/bash
                     ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
-                    uptime
                     [ ! -d "/home/ubuntu/tree_troubleshooting_k8s_demo" ] && echo "GitHub repo doesn't exists. Cloning..." && git clone https://github.com/danf425/tree_troubleshooting_k8s_demo.git
                     cd tree_troubleshooting_k8s_demo
                     git pull 
@@ -53,6 +54,9 @@ pipeline {
                     cat svc_url.txt
                     brf="this is a test"
                     echo \$brf
+                    echo $test
+                    echo "${env.test}"
+                    echo "$test:8080"
                     sleep 11
                     #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
                     echo "does below work"
