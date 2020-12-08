@@ -55,6 +55,8 @@ pipeline {
                     #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
                     echo "does below work"
                     echo "\$(cat svc_url.txt)"
+                    echo \$(cat svc_url.txt)
+                    \$(cat svc_url.txt)
                     echo "yes or no?"
                     """
                 }
