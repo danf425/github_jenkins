@@ -27,7 +27,8 @@ pipeline {
                     echo "here are my problems"
                     sleep 1
                     cd ..
-                    echo "#!/bin/bash\n\ncurl " > svc_url.sh
+                    echo "#!/bin/bash\n\n" > svc_url.sh
+                    echo "curl" >> svc_url.sh
                     kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' >> svc_url.sh
                     echo ":8080" >> svc_url.sh
                     cat svc_url.txt
