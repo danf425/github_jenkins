@@ -43,6 +43,33 @@ pipeline {
 
             }
         }
+        stage ('test new deployment') {
+            steps{
+                sshagent(credentials : ['danf-ubuntu-k8s']) {
+                    sh """#!/bin/bash
+                    ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
+                    uptime
+                    cat svc_url.txt
+                    brf="this is a test"
+                    $(sudo docker images)
+                    sudo docker images
+                    echo \$brf
+                    testx="hi"
+                    echo \$testx
+                    echo "\$testx"
+                    export BAR=2
+                    echo \$BAR
+                    sleep 11
+                    #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
+                    echo "does below work"
+                    echo "\$(cat svc_url.txt)"
+                    echo \$(cat svc_url.txt)
+                    \$(cat svc_url.txt)
+                    echo "yes or no?"
+                    """
+                }
 
+            }
+        }
     }
 }
