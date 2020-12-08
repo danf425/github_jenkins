@@ -25,7 +25,7 @@ pipeline {
                     # echo \$test2
                     sleep 3
                     ls
-                    kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}
+                    kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
                     echo "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     #curl "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # svc_url="\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
