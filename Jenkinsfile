@@ -40,7 +40,7 @@ pipeline {
                     # curl \$svc_url       
                     echo "test... 1,2,3"
                     \$(sudo docker images)
-                    sudo docker images             
+                    #sudo docker images             
                     """
                 }
 
