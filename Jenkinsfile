@@ -35,13 +35,11 @@ pipeline {
                     sh """#!/bin/bash
                     ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
                     sleep 2
-                    echo "curl" > temp.txt && kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' >> temp.txt
-                    echo ":8080" >> temp.txt && tr '\n' ' ' < temp.txt > temp2.txt
-                    echo "#!/bin/bash\n\n" > svc_url.sh && cat temp2.txt >> svc_url.sh
-                    cat svc_url.sh
-                    rm temp.txt temp2.txt
+                    echo "curl" > temp.txt && kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' >> temp.txt && echo ":8080" >> temp.txt
+                    tr '\n' ' ' < temp.txt > temp2.txt && echo "#!/bin/bash\n\n" > svc_url.sh && cat temp2.txt >> svc_url.sh
+                    cat svc_url.sh && rm temp.txt temp2.txt
                     chmod +x svc_url.sh
-                    sleep 40
+                    sleep 5m
                     ./svc_url.sh                
                     """
                 }
