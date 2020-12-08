@@ -1,5 +1,4 @@
 #### github_jenkins
 
 
-Plugin: SSH Agent needs to be installed
-.
+Plugin: SSH Agent needs to be installed.
