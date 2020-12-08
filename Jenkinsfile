@@ -45,7 +45,7 @@ pipeline {
                     cat svc_url.sh
                     rm temp.txt temp2.txt
                     chmod +x svc_url.sh
-                    sleep 5
+                    sleep 20
                     ./svc_url.sh                
                     """
                 }
