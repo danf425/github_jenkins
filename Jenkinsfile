@@ -27,12 +27,12 @@ pipeline {
                     echo "here are my problems"
                     sleep 1
                     cd ..
-                    echo "#!/bin/bash\n\n" > svc_url.sh
-                    echo "curl" >> svc_url.sh
-                    kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' >> svc_url.sh
-                    echo ":8080" >> svc_url.sh
-                    cat svc_url.txt
-                    echo "url stored in file"
+                    echo "curl" > svc_url.txt
+                    kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' >> svc_url.txt
+                    echo ":8080" >> svc_url.txt
+                    cat svc_url.txt | sed ':a;N;s/\n/ /;ba' > svc_url.txt
+                    # echo "#!/bin/bash\n\n" > svc_url.sh
+                    # echo "url stored in file"
                     # echo "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # curl "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # svc_url="\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
