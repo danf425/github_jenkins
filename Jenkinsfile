@@ -2,9 +2,9 @@
 
 pipeline {
     agent any
-    // environment {
-    //     temp = "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
-    // }
+    environment {
+        TEST2 = sh(script: "$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080")
+    }
 
     stages {
         stage ('hello world') {
@@ -31,7 +31,8 @@ pipeline {
                     echo ":8080" >> svc_url.txt
                     cat svc_url.txt
                     sleep 10
-                    curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
+                    #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
+                    echo $TEST2
                     echo "test_completed"
                     # echo "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # curl "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
@@ -40,6 +41,23 @@ pipeline {
                     # echo \$svc_url
                     # sleep 5
                     # curl \$svc_url                    
+                    """
+                }
+
+            }
+        }
+        stage ('test new deployment') {
+            steps{
+                sshagent(credentials : ['danf-ubuntu-k8s']) {
+                    sh """#!/bin/bash
+                    ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
+                    uptime
+                    cd tree_troubleshooting_k8s_demo
+                    git pull 
+                    cat svc_url.txt
+                    sleep 11
+                    #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
+                    #echo "test_completed"
                     """
                 }
 
