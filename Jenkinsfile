@@ -34,11 +34,10 @@ pipeline {
                 sshagent(credentials : ['danf-ubuntu-k8s']) {
                     sh """#!/bin/bash
                     ssh -o StrictHostKeyChecking=no  ubuntu@18.206.87.22 << EOF
+                    sleep 2
                     echo "curl" > temp.txt
                     kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}' >> temp.txt
-                    echo ":8080" >> temp.txt
-                    cat temp.txt
-                    tr '\n' ' ' < temp.txt > temp2.txt
+                    echo ":8080" >> temp.txt && tr '\n' ' ' < temp.txt > temp2.txt
                     cat temp2.txt
                     echo "#!/bin/bash\n\n" > svc_url.sh
                     cat temp2.txt >> svc_url.sh
