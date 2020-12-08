@@ -31,6 +31,8 @@ pipeline {
                     echo ":8080" >> svc_url.txt
                     cat svc_url.txt
                     curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
+
+                    echo "test_completed"
                     # echo "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # curl "\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'):8080"
                     # svc_url="\$(kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}')"
