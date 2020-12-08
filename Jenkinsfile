@@ -39,8 +39,9 @@ pipeline {
                     # sleep 5
                     # curl \$svc_url       
                     echo "test... 1,2,3"
-                    \$(sudo docker images)
-                    #sudo docker images             
+                    `sudo docker images`
+                    #sudo docker images   
+                    curl `cat svc_url.txt`          
                     """
                 }
 
