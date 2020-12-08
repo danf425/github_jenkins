@@ -23,6 +23,7 @@ pipeline {
                     echo "here are my problems"
                     testx=5
                     echo \$testx
+                    echo "\$testx"
                     sleep 3
                     
                     # kubectl get svc tree-lb-service -o=jsonpath='{.status.loadBalancer.ingress[0].hostname}'
