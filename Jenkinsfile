@@ -21,7 +21,7 @@ pipeline {
                     # [ ! \$(docker images -q dmontanez/logdna-kubecon-demo) ] && echo "Docker image does not exist. Building..." && docker build . -t dmontanez/logdna-kubecon-demo
                     kubectl apply -f app.yaml
                     echo "here are my problems"
-                    test2="hi scott"
+                    /bin/bash test2="hi scott"
                     echo \$test2
                     sleep 3
                     ls
