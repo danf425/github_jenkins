@@ -55,7 +55,7 @@ pipeline {
                     cat svc_url.txt
                     sleep 11
                     #curl ... --data '{ "file_content":["' `cat svc_url.txt` '", ...]}"' ...
-                    #echo "test_completed"
+                    echo \$(cat svc_url.txt)
                     """
                 }
 
