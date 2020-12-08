@@ -8,7 +8,7 @@ data:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: tree-k8s-demo
+  name: tree_troubleshooting_k8s_demo
   labels:
     app: tree_troubleshooting_k8s_demo
 spec:
@@ -22,7 +22,7 @@ spec:
         app: tree_troubleshooting_k8s_demo
     spec:
       containers:
-      - name: tree-deployment
+      - name: tr-k8s-demo
         image: dmontanez/logdna-kubecon-demo:latest
         imagePullPolicy: IfNotPresent
         ports:
